@@ -1,0 +1,13 @@
+[Unit]
+Description=Jenkins Agent
+After=network.target
+
+[Service]
+User=vagrant
+WorkingDirectory=/home/vagrant
+ExecStart=/usr/bin/java -jar /home/vagrant/agent.jar -url http://192.168.2.29:8080/ -secret @/home/vagrant/secret-file -name "Debian Based Agent" -workDir "/home/vagrant"
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
