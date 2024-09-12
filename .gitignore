@@ -1,0 +1,6 @@
+iso/linux
+iso/windows
+debian11/.vagrant
+debian11/output-debian
+debian11/builds/virtualbox-*
+debian11/packer_cache
