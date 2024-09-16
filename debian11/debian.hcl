@@ -1,25 +1,3 @@
-packer {
-  required_plugins {
-    ansible = {
-      source  = "github.com/hashicorp/ansible"
-      version = "~> 1"
-    }
-    #vagrant = {
-    #  source  = "github.com/hashicorp/vagrant"
-    #  version = "~> 1"
-    #}
-    virtualbox = {
-      source  = "github.com/hashicorp/virtualbox"
-      version = "~> 1"
-    }
-  }
-}
-
-variable "version" {
-  type    = string
-  default = ""
-}
-
 source "virtualbox-iso" "debian" {
   boot_command            = ["<esc><wait>", "install <wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>", "debian-installer=en_US.UTF-8 <wait>", "auto <wait>", "locale=en_US.UTF-8 <wait>", "kbd-chooser/method=us <wait>", "keyboard-configuration/xkb-keymap=us <wait>", "netcfg/get_hostname={{ .Name }} <wait>", "netcfg/get_domain=vagrantup.com <wait>", "fb=false <wait>", "debconf/frontend=noninteractive <wait>", "console-setup/ask_detect=false <wait>", "console-keymaps-at/keymap=us <wait>", "grub-installer/bootdev=/dev/sda <wait>", "<enter><wait>"]
   boot_wait               = "5s"
@@ -54,7 +32,7 @@ build {
   }
 
   provisioner "ansible-local" {
-  # galaxy_file   = "../shared/requirements.yml"
+    # galaxy_file   = "../shared/requirements.yml"
     playbook_file = "../shared/main.yml"
   }
 
