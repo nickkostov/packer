@@ -5,7 +5,7 @@ source "virtualbox-iso" "windows-server" {
   floppy_files         = ["autounattend/autounattend.xml"]
   guest_additions_mode = "disable"
   guest_os_type        = "Windows2016_64"
-  headless             = false
+  headless             = true
   iso_checksum         = "${var.config.iso_checksum}"
   iso_url              = "${var.config.iso_url}"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
