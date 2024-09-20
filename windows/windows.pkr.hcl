@@ -6,25 +6,20 @@ source "virtualbox-iso" "windows-server" {
   guest_additions_mode = "disable"
   guest_os_type        = "Windows2016_64"
   headless             = true
-  iso_checksum         = "${var.config.iso_checksum}"
-  iso_url              = "${var.config.iso_url}"
-  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  iso_checksum         = var.config.iso_checksum
+  iso_urls             = var.config.iso_urls
+  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"In Packer Shutdown\""
   shutdown_timeout     = "30m"
   vboxmanage = [
-    [
-      "modifyvm", "{{ .Name }}", "--memory", "${var.config.memsize}"
-    ],
-    [
-      "modifyvm", "{{ .Name }}",
-      "--cpus", "${var.config.numvcpus}"
-    ]
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.config.memsize}"],
+    ["modifyvm", "{{ .Name }}", "--cpus", "${var.config.numvcpus}"]
   ]
-  vm_name        = "${var.config.vm_name}"
   winrm_insecure = true
-  winrm_password = "${var.config.winrm_password}"
-  winrm_timeout  = "4h"
   winrm_use_ssl  = true
-  winrm_username = "${var.config.winrm_username}"
+  winrm_username = var.config.winrm_username
+  winrm_password = var.config.winrm_password
+  winrm_timeout  = "4h"
+  vm_name        = format("jenkins-%s-{{ timestamp }}-{{uuid}}", var.config.vm_name)
 }
 
 build {
@@ -43,19 +38,36 @@ build {
   }
 
   provisioner "windows-restart" {
-    restart_timeout = "30m"
+    restart_timeout = "10m"
   }
 
   provisioner "windows-restart" {
-    restart_timeout = "30m"
+    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
     pause_before = "1m0s"
-    scripts      = ["scripts/cleanup.ps1"]
+    scripts      = [
+      "scripts/cleanup.ps1"
+    ]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "10m"
+  }
+  provisioner "powershell" {
+    pause_before = "1m0s"
+    scripts      = [
+      "scripts/winrm.ps1"
+    ]
+  }
+  
+  post-processors {
+    post-processor "vagrant" {
+      output = "builds/{{ .Provider }}-{{ timestamp }}-{{uuid}}.box"
+    }
   }
 
 }
 
 
-	
+ 
