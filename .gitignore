@@ -1,10 +1,7 @@
-iso/linux
-iso/windows
-debian11/.vagrant
+iso/linux/*
+iso/windows/*
+*/.vagrant/
 debian11/output-debian
-debian11/builds/virtualbox-*
+*/builds/*.box
 debian11/packer_cache
 *.iso
-
-windows/packer_cache/*
-windows/output-windows-server/*
