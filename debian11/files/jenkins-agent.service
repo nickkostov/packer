@@ -1,0 +1,13 @@
+[Unit]
+Description=Jenkins Agent
+After=network.target
+
+[Service]
+User=jenkins
+WorkingDirectory=/home/jenkins
+ExecStart=/usr/bin/java -jar /home/jenkins/agent.jar -url http://192.168.2.235:8080/ -secret @/home/jenkins/secret-file -name "Debian Based Agent" -workDir "/home/jenkins"
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

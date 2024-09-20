@@ -17,3 +17,5 @@ vagrant up
 vagrant status
 vagrant destroy
 ```
+
+You need to update the IP of the jenkins :P
