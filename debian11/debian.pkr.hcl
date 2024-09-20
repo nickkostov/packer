@@ -47,6 +47,10 @@ build {
     execute_command = "echo '${var.config.ssh_password}' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     script          = "scripts/cleanup.sh"
   }
+  provisioner "shell" {
+    execute_command = "echo '${var.config.ssh_password}' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    script          = "scripts/docker_install.sh"
+  }
   post-processors {
     post-processor "vagrant" {
       output = "builds/{{ .Provider }}-debian11.box"
