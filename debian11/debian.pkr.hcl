@@ -65,7 +65,7 @@ build {
   }
   post-processors {
     post-processor "vagrant" {
-      output = "builds/{{ .Provider }}-{{ timestamp }}-{{uuid}}.box"
+      output = "builds/debian-{{ .Provider }}-{{ timestamp }}-{{uuid}}.box"
     }
 
   }

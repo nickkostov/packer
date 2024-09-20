@@ -4,6 +4,8 @@ variable "version" {
 }
 
 variable "config" {
+  sensitive   = true
+  description = "Default Image Configurations"
   type = object({
     boot_wait    = string
     disk_size    = number
