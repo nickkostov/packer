@@ -19,7 +19,7 @@ variable "config" {
     # iso_url = "https://go.microsoft.com/fwlink/p/?LinkID=2195167&clcid=0x409&culture=en-us&country=US"
     memsize        = 2048 # RAM size in MB (e.g., 4 GB)
     numvcpus       = 2    # Number of CPUs
-    vm_name        = "Win2019_17763"
+    vm_name        = "Target"
     winrm_password = "jenkins"
     winrm_username = "Administrator"
   }

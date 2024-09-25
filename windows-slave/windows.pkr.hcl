@@ -47,7 +47,7 @@ build {
 
   provisioner "powershell" {
     pause_before = "1m0s"
-    scripts      = [
+    scripts = [
       "scripts/cleanup.ps1"
     ]
   }
@@ -56,11 +56,11 @@ build {
   }
   provisioner "powershell" {
     pause_before = "1m0s"
-    scripts      = [
+    scripts = [
       "scripts/winrm.ps1"
     ]
   }
-  
+
   post-processors {
     post-processor "vagrant" {
       output = "builds/{{ .Provider }}-{{ timestamp }}-{{uuid}}.box"

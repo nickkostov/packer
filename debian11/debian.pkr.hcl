@@ -29,7 +29,7 @@ source "virtualbox-iso" "debian" {
     ["modifyvm", "{{ .Name }}", "--cpus", var.config.numvcpus]
   ]
   virtualbox_version_file = ".vbox_version"
-  vm_name                 = format("debian-%s", var.config.vm_name)
+  vm_name                 = format("debian-%s-{{ timestamp }}", var.config.vm_name)
 }
 
 build {

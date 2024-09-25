@@ -1,7 +1,7 @@
 iso/linux/*
 iso/windows/*
 */.vagrant/
-debian11/output-debian
+*/output-*
 */builds/*.box
-debian11/packer_cache
+*/packer_cache
 *.iso
