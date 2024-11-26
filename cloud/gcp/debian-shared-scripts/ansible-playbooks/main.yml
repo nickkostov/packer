@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Install Packages
+      apt:
+        name:
+          - git
+          - wget
+          - curl
+          - vim
+          - openjdk-17-jdk
+          - htop
+          - ca-certificates
+          - gnupg
+          - google-osconfig-agent
+          - rsync
+          - zip
+        state: present
+        update_cache: yes
+      when: ansible_os_family == 'Debian'

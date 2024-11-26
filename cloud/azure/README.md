@@ -1,0 +1,1 @@
+# Packer Baselines for Azure
