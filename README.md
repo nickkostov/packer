@@ -1,3 +1,5 @@
+# This needs to be revisited and a new plan for the Packer repo needs to be built
+
 # What has been done here:
 
 1. 2 Images Windows Server 2019 and Debian 11
